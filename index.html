@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>BETATENUN - Sewa Tenun Tradisional</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="images/logo-tenun.jpg" alt="Logo Website Tenun" class="logo-img" />
+            <span>BETATENUN</span>
+        </div>
+        <nav>
+            <a href="#/" data-link>Beranda</a>
+            <a href="#/tenun" data-link>Tenun</a>
+            <a href="#/dashboard" data-link>Dashboard</a>
+            <a href="#/about" data-link>Tentang</a>
+            <a href="#/login" data-link>Login</a>
+            <a href="#/register" data-link>Register</a>
+        </nav>
+    </header>
+
+    <main id="app">
+
+        <!-- BERANDA -->
+        <section id="view-home" class="view active">
+            <div class="hero">
+                <div class="hero-overlay"></div>
+                <div class="hero-content">
+
+                    <h1>Sewa Tenun Tradisional&nbsp;<span class="hero-highlight">lebih mudah</span></h1>
+                    <p class="hero-text">
+                        BETATENUN menghubungkan <strong>pemilik tenun</strong> dengan <strong>penyewa</strong> yang membutuhkan tenun tradisional untuk acara pernikahan, wisuda, photoshoot, dan momen spesial lainnya.
+                    </p>
+                    <div class="hero-actions">
+                        <button onclick="location.hash='#/tenun'">Mulai Mencari Tenun</button>
+                        <button onclick="location.hash='#/register'">Buat Akun</button>
+
+                    </div>
+                    <p class="muted hero-note">
+                        Hari pengambilan dan pengembalian gratis. Biaya hanya dihitung selama masa pemakaian. Denda keterlambatan & kerusakan diatur langsung oleh pemilik.
+                    </p>
+                </div>
+            </div>
+
+            <div class="card card-soft">
+                <div class="grid">
+                    <div>
+                        <h3>Untuk Penyewa</h3>
+                        <ul class="bullet-list">
+                            <li>Cari tenun yang kamu butuhkan berdasarkan motif, daerah, warna, dan harga sewa.</li>
+                            <li>Booking mudah secara online, ambil tenun langsung dari pemilik.</li>
+                            <li>Bagikan pengalamanmu melalui rating dan ulasan setelah selesai menyewa.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>Untuk Pemilik</h3>
+                        <ul class="bullet-list">
+                            <li>Tampilkan koleksi tenunmu dengan foto dan deskripsi yang menarik.</li>
+                            <li>Atur permintaan sewa secara fleksibel dan transparan.</li>
+                            <li>Lihat pendapatan dan ulasan untuk meningkatkan kepercayaan penyewa.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LIST TENUN -->
+        <section id="view-tenun-list" class="view">
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <h2>Daftar Tenun</h2>
+                        <span class="muted">Filter & pilih tenun sesuai kebutuhanmu</span>
+                    </div>
+                </div>
+
+                <form id="filterForm" class="filter-form">
+                    <div class="grid">
+                        <div>
+                            <label>Motif</label>
+                            <input type="text" id="filterMotif" placeholder="Motif Sepe" />
+                        </div>
+                        <div>
+                            <label>Daerah</label>
+                            <input type="text" id="filterDaerah" placeholder="Sumba, Rote, dst." />
+                        </div>
+                        <div>
+                            <label>Warna</label>
+                            <input type="text" id="filterWarna" placeholder="Merah, Biru, dll." />
+                        </div>
+                        <div>
+                            <label>Harga max (per hari)</label>
+                            <input type="number" id="filterHargaMax" min="0" placeholder="cth. 200000" />
+                        </div>
+                        <div>
+                            <label>Tanggal mulai sewa</label>
+                            <input type="date" id="filterTanggalMulai" />
+                        </div>
+                        <div>
+                            <label>Tanggal selesai sewa</label>
+                            <input type="date" id="filterTanggalSelesai" />
+                        </div>
+                    </div>
+                    <div class="filter-actions">
+                        <button type="submit">Terapkan Filter</button>
+                        <button type="button" class="secondary" id="filterResetBtn">Reset</button>
+                    </div>
+                </form>
+            </div>
+
+            <div id="tenunListContainer" class="grid" style="margin-top:12px;"></div>
+        </section>
+
+        <!-- DETAIL TENUN -->
+        <section id="view-tenun-detail" class="view">
+            <div id="tenunDetailContainer"></div>
+        </section>
+
+        <!-- PROFIL TOKO -->
+        <section id="view-toko-detail" class="view">
+            <div id="tokoDetailContainer"></div>
+        </section>
+
+        <!-- LOGIN -->
+        <section id="view-login" class="view">
+            <div class="card auth-card">
+                <h2>Login</h2>
+                <div id="alreadyLoginBox" style="display:none;">
+                    <div class="alert">
+                        Kamu sudah login sebagai <strong id="alreadyLoginName"></strong>.
+                    </div>
+                    <button type="button" class="danger" id="logoutBtnLogin">Logout</button>
+                    <button type="button" class="secondary" onclick="location.hash='#/dashboard'">Ke Dashboard</button>
+                    <hr style="border:none;border-top:1px solid #e5e7eb;margin:12px 0;">
+                </div>
+
+                <div id="loginAlert"></div>
+                <form id="loginForm">
+                    <label>Email</label>
+                    <input type="email" id="loginEmail" required />
+                    <label>Password</label>
+                    <input type="password" id="loginPassword" required />
+                    <button type="submit">Login</button>
+                </form>
+                <p class="muted" style="margin-top:10px;">
+                    Belum punya akun? <a href="#/register" class="highlight">Register</a>
+                </p>
+            </div>
+        </section>
+
+        <!-- REGISTER -->
+        <section id="view-register" class="view">
+            <div class="card auth-card">
+                <h2>Register</h2>
+                <div id="registerAlert"></div>
+
+                <form id="registerForm">
+                    <label>Nama</label>
+                    <input type="text" id="registerNama" required />
+
+                    <label>Email</label>
+                    <input type="email" id="registerEmail" required />
+
+                    <label>Password</label>
+                    <input type="password" id="registerPassword" required />
+
+                    <label>Daftar sebagai</label>
+                    <select id="registerRole" required>
+        <option value="penyewa">Penyewa</option>
+        <option value="pemilik">Pemilik</option>
+      </select>
+
+                    <!-- Field khusus pemilik -->
+                    <div id="registerPemilikFields" style="display:none;">
+                        <label>Alamat Toko</label>
+                        <textarea id="registerAlamat" placeholder=""></textarea>
+
+                        <label>Nomor WhatsApp</label>
+                        <input type="text" id="registerWA" placeholder="" />
+
+                        <label>Instagram</label>
+                        <input type="text" id="registerIG" placeholder="" />
+
+                        <label>Link Maps</label>
+                        <input type="text" id="registerMaps" placeholder="https://maps.app.goo.gl/..." />
+                    </div>
+
+                    <button type="submit">Buat Akun</button>
+                </form>
+            </div>
+        </section>
+
+
+        <!-- DASHBOARD -->
+        <section id="view-dashboard" class="view">
+            <div class="card">
+                <h2>Dashboard</h2>
+                <p class="muted" id="dashboardSubtitle"></p>
+                <div id="dashboardContent"></div>
+            </div>
+        </section>
+
+        <!-- ABOUT -->
+        <section id="view-about" class="view">
+            <div class="card">
+                <h2>Tentang BETATENUN</h2>
+
+                <p>
+                    <strong>BETATENUN</strong> adalah platform digital yang menghubungkan
+                    <strong>pemilik tenun tradisional</strong> dengan
+                    <strong>penyewa</strong> di wilayah Nusa Tenggara Timur. Platform ini dirancang untuk mempermudah proses pencarian, pemesanan, dan pengelolaan sewa tenun secara praktis dan transparan.
+                </p>
+
+                <p>
+                    BETATENUN hadir sebagai solusi atas keterbatasan akses informasi tenun tradisional, sekaligus membantu pemilik tenun mempromosikan koleksi mereka secara digital tanpa biaya komisi.
+                </p>
+
+                <h3 style="margin-top:12px;">Apa yang ditawarkan BETATENUN?</h3>
+                <ul class="bullet-list">
+                    <li>
+                        Penyewaan tenun tradisional untuk berbagai kebutuhan seperti pernikahan, wisuda, photoshoot, dan acara adat.
+                    </li>
+                    <li>
+                        Sistem booking sederhana untuk pencatatan dan pengelolaan jadwal sewa.
+                    </li>
+                    <li>
+                        Informasi tempat penyewaan tenun yang dilengkapi dengan alamat, nomor WhatsApp, Instagram, dan lokasi.
+                    </li>
+                </ul>
+
+                <h3 style="margin-top:12px;">Tujuan BETATENUN</h3>
+                <ul class="bullet-list">
+                    <li>
+                        Mempermudah masyarakat dalam menemukan dan menyewa tenun tradisional.
+                    </li>
+                    <li>
+                        Mendukung pelestarian budaya tenun NTT melalui pemanfaatan teknologi digital.
+                    </li>
+                    <li>
+                        Memberdayakan pemilik tenun dan UMKM lokal agar lebih dikenal luas.
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <span>© BETATENUN · Demo Platform Sewa Tenun Tradisional</span>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
